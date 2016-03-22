@@ -2,23 +2,33 @@
 <html>
 <head>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body ng-app="myApp" ng-controller="userCtrl" class="container">
+<body ng-app="myApp" ng-controller="userCtrl">
 
-<ul class="nav navbar-nav">
-    <li class="active"><a href="#/user_list">User List</a></li>
-    <li><a href="#/new_user">New User</a></li>
-</ul>
-<br>
-<br>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header"><a href="#/" class="navbar-brand">EmployeeHub</a></div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="#/">Home</a></li>
+				<li><a href="#/new_user">Create New User</a></li>
+				<li><a href="#/new_employee">New Employee</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 
-<div ng-view></div>
+<section class="content">
+	<div ng-view></div>
+</section>
+
+<footer class="container text-center"><p>&copy; 2016 Ted Zhang</p></footer>
 
 <script src= "javascripts/myApp.js"></script>
-<script src= "javascripts/dirPagination.js"></script>
 </body>
 </html>

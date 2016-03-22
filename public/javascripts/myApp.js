@@ -1,10 +1,10 @@
 (function(){
-    angular.module('myApp', ['ngRoute','angularUtils.directives.dirPagination'])
+    angular.module('myApp', ['ngRoute'])
         //3 views routing
     .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider
-                .when('/user_list', {
+                .when('/', {
                     templateUrl : 'templates/user_list.html',
                     controller : 'userCtrl'
                 })
@@ -16,8 +16,12 @@
                     templateUrl :'templates/new_user.html',
                     controller : 'NewuserController'
                 })
+                .when('/new_employee', {
+                    templateUrl :'templates/newEmpolyee.html',
+                    controller : 'NewEmployeeCtrl'
+                })
                 .otherwise({
-                    redirectTo :  'user_list'
+                    redirectTo :  '/'
                 });
         }])
     //user data factory
@@ -37,6 +41,25 @@
             }
         };
     }])
+        .controller('NewEmployeeCtrl', function($scope) {
+
+
+            $scope.addEmployee = function() {
+                var employee = {
+                    fName : $scope.fName,
+                    lName : $scope.lName,
+                    title : $scope.title,
+                    sex   : $scope.sex,
+                    startDate : $scope.startDate,
+                    officePhone : $scope.officePhone,
+                    cellPhone : $scope.cellPhone,
+                    email : $scope.email,
+                    manager : $scope.manager,
+                    directReports : $scope.directReports
+                };
+                console.log(employee);
+            }
+        })
     //User list controller
     .controller('userCtrl', function($scope,userFactory) {
         //Initialize users data
@@ -44,15 +67,12 @@
             userFactory.getUsers()
                 .then(function(res) {
                     $scope.users = res.data;
-                    console.log($scope.users);
+                    //console.log($scope.users);
                 });
         }
         getMyUser();
 
         $scope.deleteUser = function(id) {
-            //var index = $scope.users.indexOf(item);
-            //$scope.users.splice(index,1);
-            //$scope.pagedItems[$scope.currentPage].splice(index % $scope.itemsPerPage,1);
             userFactory.deleteUser(id)
                 .then(function(res){
                     console.log(res);
@@ -125,7 +145,7 @@
             userFactory.getUsers()
                 .then(function(res) {
                     $scope.users = res.data;
-                    console.log($scope.users);
+                    //console.log($scope.users);
                 });
         }
         getMyUser();

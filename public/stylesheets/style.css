@@ -1,8 +1,17 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 60px;
 }
-
-a {
-  color: #00B7FF;
+footer {
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+footer p {
+  border-top: 1px solid #C0C0C0;
+}
+.navbar-form .form-group {
+  margin-left: 10px;
+}
+.navbar-form button {
+  margin-left: 10px;
 }

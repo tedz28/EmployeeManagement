@@ -1,9 +1,8 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var users = require('./routes/users');
-var mongoose   = require('mongoose');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -14,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', users);
-
 
 var port = process.env.PORT || 3000;
 app.listen(port);

@@ -1,0 +1,35 @@
+<form class="container">
+    <h3>Create New Employee</h3>
+
+    <label>First Name:</label>
+    <input class="form-control" type="text" ng-model="fName"  placeholder="First Name">
+    <br>
+    <label>Last Name:</label>
+    <input class="form-control" type="text" ng-model="lName"  placeholder="Last Name">
+    <br>
+    <label>Title:</label>
+    <input class="form-control" type="text" ng-model="title" placeholder="Title">
+    <br>
+    <label>Sex:</label>
+    <input class="form-control" type="text" ng-model="sex" placeholder="Sex">
+    <br>
+    <label>Start Date:</label>
+    <input class="form-control" type="text" ng-model="startDate"  placeholder="Start Date">
+    <br>
+    <label>Office Phone:</label>
+    <input class="form-control" type="text" ng-model="officePhone"  placeholder="Office Phone">
+    <br>
+    <label>Cell Phone:</label>
+    <input class="form-control" type="text" ng-model="cellPhone"  placeholder="Cell Phone">
+    <br>
+    <label>Email:</label>
+    <input class="form-control" type="text" ng-model="email"  placeholder="Email">
+    <br>
+    <label>Manager:</label>
+    <input class="form-control" type="text" ng-model="manager"  placeholder="Manager">
+    <br>
+    <label>Direct Reports:</label>
+    <input class="form-control" type="text" ng-model="directReports" ng-list placeholder="Direct reports separate by comma">
+    <br>
+    <button class="btn btn-primary" ng-click="addEmployee()">Create New Employee</button>
+</form>
