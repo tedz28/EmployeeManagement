@@ -1,0 +1,22 @@
+<div class="container">
+    <h3>Employee List</h3>
+    <hr>
+    <table class="table table-striped table-bordered table-hover table-responsive">
+        <tr>
+            <th ng-click="orderByMe('name')">Name</th>
+            <th ng-click="orderByMe('title')">Title</th>
+            <th ng-click="orderByMe('age')">Direct Reports</th>
+            <th>Detail</th>
+        </tr>
+        <tr>
+            Search: <input type="text" ng-model="searchText" placeholder="Search employee here...">
+        </tr>
+        <br>
+        <br>
+        <tr ng-repeat="employee in employees | filter : searchText | orderBy : myOrderBy">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.title }}</td>
+
+        </tr>
+    </table>
+</div>
