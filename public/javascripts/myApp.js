@@ -11,6 +11,10 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl :'templates/newEmpolyee.html',
                 controller : 'NewEmployeeCtrl'
             })
+            .when('/detail', {
+                templateUrl : 'templates/employeeDetail.html',
+                controller : 'EmployeeDetailCtrl'
+            })
             .otherwise({
                 redirectTo :  '/'
             });
@@ -23,9 +27,15 @@ angular.module('myApp', ['ngRoute'])
         },
         addEmployee : function(data) {
             return $http.post('/employees',data);
+        },
+        getDirectReports : function(id) {
+            return $http.get('/employees/' + id.toString() + '/reports');
         }
     };
 }])
+.controller('EmployeeDetailCtrl', function($scope) {
+    
+})
 //new employee controller
 .controller('NewEmployeeCtrl', function($scope, $location, employeeFactory) {
     $scope.addEmployee = function() {
@@ -49,12 +59,21 @@ angular.module('myApp', ['ngRoute'])
         employeeFactory.getEmployees()
             .then(function(res) {
                 $scope.employees = res.data;
+                //calculate direct reports for each employee
+                //and set to employee.dirReports(array of ids)
+                $scope.employees.forEach(function(item) {
+                    employeeFactory.getDirectReports(item._id)
+                        .then(function(res) {
+                            item.dirReports = res.data;
+                        });
+                });
             });
     }
     getEmployees();
 
-    $scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
+    //list sorting
+    $scope.orderByMe = function(me) {
+        $scope.myOrderBy = me;
     };
 
 });

@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var users = require('./routes/users');
 var employees = require('./routes/employees');
 var mongoose = require('mongoose');
 
@@ -13,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', users);
+
 app.use('/employees', employees);
 
 var port = process.env.PORT || 3000;

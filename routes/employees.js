@@ -51,4 +51,25 @@ router.delete('/:id', function(req, res) {
     });
 });
 
+//get employee by id
+router.get('/:id', function(req, res) {
+    Employee.findById(req.params.id, function(err, doc) {
+      if(err) res.send(err);
+      else res.json(doc);
+    });
+});
+
+//get direct reports for specific employee
+router.get('/:id/reports', function(req, res) {
+    Employee.findById(req.params.id, function(err, doc) {
+        if(err) res.send(err);
+        Employee.find({manager: doc._id}, function(err, docs) {
+            var ids = [];
+            docs.forEach(function(item) {
+                ids.push(item._id);
+            });
+            res.json({reports : ids});
+        });
+    });
+});
 module.exports = router;

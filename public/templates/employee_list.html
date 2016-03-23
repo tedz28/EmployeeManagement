@@ -16,7 +16,7 @@
         <tr ng-repeat="employee in employees | filter : searchText | orderBy : myOrderBy">
             <td>{{ employee.name }}</td>
             <td>{{ employee.title }}</td>
-
+            <td>{{ employee.dirReports.reports.length}}</td>
         </tr>
     </table>
 </div>
