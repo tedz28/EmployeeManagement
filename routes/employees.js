@@ -14,10 +14,24 @@ router.get('/', function(req, res) {
 //create new employee
 router.post('/', function(req, res) {
     var employee = new Employee(req.body);
-    employee.save(function(err){
-        if(err) res.send(err);
-        else res.json({message: 'Employee successfully created!',employee: employee });
-    });
+    if(typeof req.body.manager === 'undefined') {
+        employee.save(function(err){
+            if(err) res.send(err);
+            else res.json({message: 'Employee successfully created!',employee: employee});
+        });
+    }else {
+        console.log(req.body.manager);
+        Employee.findOne({name : req.body.manager}, function(err, doc) {
+            if(err) res.send(err);
+            else {
+                employee.manager = doc._id;
+                employee.save(function(err){
+                    if(err) res.send(err);
+                    else res.json({message: 'Employee successfully created!',employee: employee});
+                });
+            }
+        })
+    }
 });
 
 //update employee

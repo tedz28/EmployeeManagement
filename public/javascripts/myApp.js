@@ -61,7 +61,7 @@ angular.module('myApp', ['ngRoute'])
 })
 
 //employee detail page
-.controller('EmployeeDetailCtrl', function($scope, $routeParams, employeeFactory) {
+.controller('EmployeeDetailCtrl', function($scope, $location, $routeParams, employeeFactory) {
     $scope.employee = {};
 
     // //testing function for Array.find()
@@ -105,8 +105,13 @@ angular.module('myApp', ['ngRoute'])
             email : $scope.email,
             manager : $scope.manager,
         };
-        employeeFactory.addEmployee(employee);
-        $location.path("#/");
+        employeeFactory.addEmployee(employee)
+            .then(function(res) {
+                $location.path("/");
+            }, function(err) {
+                $location.path("/");
+            });
+
     }
 })
 //employee list controller
@@ -128,7 +133,8 @@ angular.module('myApp', ['ngRoute'])
     getEmployees();
 
     $scope.viewDetail = function(employee) {
-        $location.path("#/" + employee._id);
+        $location.path("/" + employee._id);
+        console.log(employee);
     }
     //list sorting
     $scope.orderByMe = function(me) {
