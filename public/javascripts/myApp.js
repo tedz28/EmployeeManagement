@@ -134,7 +134,6 @@ angular.module('myApp', ['ngRoute'])
 
     $scope.viewDetail = function(employee) {
         $location.path("/" + employee._id);
-        console.log(employee);
     }
     //list sorting
     $scope.orderByMe = function(me) {

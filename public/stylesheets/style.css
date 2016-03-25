@@ -64,7 +64,7 @@ body{
 .directory-info-row {
     display: inline-block;
     width: 100%;
-    margin-top: 45px;
+    margin-top: 15px;
 }
 
 .directory-info-row h4, .directory-info-row a {
@@ -75,31 +75,13 @@ body{
     font-size: 18px;
 }
 
-.directory-info-row .social-links {
-    display: inline-block;
-    margin-bottom: 10px;
-}
 
-.directory-info-row .social-links li {
-    display: inline-block;
-}
-
-ul li {
-    list-style: none;
-}
-
-.directory-info-row .social-links li a {
-    background: #EFF0F4;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    display: inline-block;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    color: #7A7676;
-}
 
 .media-body button {
     margin-top: 20px;
+}
+
+.search-box {
+    margin-left: 20px;
+    margin-bottom: 20px;
 }

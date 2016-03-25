@@ -20,15 +20,21 @@ router.post('/', function(req, res) {
             else res.json({message: 'Employee successfully created!',employee: employee});
         });
     }else {
-        console.log(req.body.manager);
+        console.log("Manger name:"+req.body.manager);
         Employee.findOne({name : req.body.manager}, function(err, doc) {
             if(err) res.send(err);
             else {
-                employee.manager = doc._id;
-                employee.save(function(err){
-                    if(err) res.send(err);
-                    else res.json({message: 'Employee successfully created!',employee: employee});
-                });
+                //console.log(doc);
+                if(doc) {
+                    employee.manager = doc._id;
+                    employee.save(function(err){
+                        if(err) res.send(err);
+                        else res.json({message: 'Employee successfully created!',employee: employee});
+                    });
+                }else{
+                    res.send("Failed to create user, invalid manager name");
+                }
+
             }
         })
     }
