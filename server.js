@@ -6,8 +6,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-//mongoose.connect('mongodb://admin:admin@jello.modulusmongo.net:27017/Y5tonumu');
-mongoose.connect('mongodb://admin:admin@jello.modulusmongo.net:27017/p3uvaQez')
+mongoose.connect('mongodb://admin:admin@jello.modulusmongo.net:27017/p3uvaQez');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));

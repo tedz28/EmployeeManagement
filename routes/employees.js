@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     Employee.find({}).lean().exec((err,docs) => {
        if(err || !docs) res.send(err);
        else {
-           docs.forEach((doc, index) => {
+           docs.forEach((doc) => {
                async.parallel([(callback)=>{
                   if(doc.manager) {
                       //get a manager object for each employee
