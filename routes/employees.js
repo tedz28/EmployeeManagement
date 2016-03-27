@@ -2,12 +2,38 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Employee= require('./../models/employee');
+var async = require('async');
 
 //get all employees
-router.get('/', function(req, res) {
-    Employee.find(function(err,docs) {
-       if(err) res.send(err);
-       else res.json(docs);
+router.get('/', (req, res) => {
+    //all we need is a plain JavaScript version of the returned doc
+    //by using lean() in the query chain. That way Mongoose skips
+    //the step of creating the full model instance
+    //and we directly get a doc we can modify
+    Employee.find({}).lean().exec((err,docs) => {
+       if(err || !docs) res.send(err);
+       else {
+           docs.forEach((doc, index) => {
+               async.parallel([(callback)=>{
+                  if(doc.manager) {
+                      //get a manager object for each employee
+                      Employee.findById(doc.manager, (err, mdoc) =>{
+                          if(err || !mdoc) res.send(err);
+                          else {
+                              doc.managerObj = mdoc;
+                              console.log(mdoc);
+                              //if(index == docs.length - 1) res.json(docs);
+                          }
+                          callback();
+                      });
+                  }
+              }], (err, results) => {
+                  if(err) res.send(err);
+                  res.json(docs);}
+              );
+           });
+
+       }
     });
 });
 
