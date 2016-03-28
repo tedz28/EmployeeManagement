@@ -9,7 +9,6 @@ var EmployeeSchema = new Schema({
     officePhone : String,
     cellPhone : String,
     email : String,
-    //manager : {name: String, id: String}
     manager : String
 });
 
