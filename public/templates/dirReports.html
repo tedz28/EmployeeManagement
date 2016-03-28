@@ -19,7 +19,7 @@
             	          </a>
             	          <div class="media-body">
             	              <h4><a href="#/{{employee._id}}">{{employee.name}}</a> <span class="text-muted small"> - {{employee.title}}</span></h4>
-                              <a href="#/{{employee._id}}/reports" >Diret Reports: {{ employee.dirReports.reports.length}}</a>
+                              <a href="#/{{employee._id}}/reports" >Diret Reports: {{ employee.dirReports.length}}</a>
                               <br>
                               <button class="btn btn-primary" ng-click="viewDetail(employee)">More Details</button>
             	          </div>

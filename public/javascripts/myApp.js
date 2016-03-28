@@ -44,51 +44,19 @@ angular.module('myApp', ['ngRoute'])
     $scope.employees = [];
     employeeFactory.getDirectReports($routeParams.id)
         .then(function(res) {
-            var ids = res.data;
-            if(ids.reports.length == 0)
-                $scope.message = "Oops, this employee doesn't have any direct reports!";
-            //for of syntax, es6 support needed
-            for(var id of ids.reports) {
-                for(var item of $scope.$parent.employees) {
-                    if(id === item._id) $scope.employees.push(item);
-                }
-                // employeeFactory.getOneEmployee(id)
-                //     .then(function(response) {
-                //         $scope.employees.push(response.data);
-                //     })
-            }
+            $scope.employees = res.data;
+            if ($scope.employees.length == 0)
+                {$scope.message = "Oops, this employee doesn't have any direct reports!";}
         });
 })
 
 //employee detail page
 .controller('EmployeeDetailCtrl', function($scope, $location, $routeParams, employeeFactory) {
     $scope.employee = {};
-
-    // //testing function for Array.find()
-    // function findEmployeeById (item) {
-    //     return item._id  === $routeParams.id;
-    // }
-    // if($scope.$parent.employees){
-    //     //es6 Array.find()
-    //     $scope.employee = $scope.$parent.employees.find(findEmployeeById);
-    // }
-
-    //get employee's detail and also retrieve its manager's detail
+    //get employee's detail
     employeeFactory.getOneEmployee($routeParams.id)
         .then(function(res) {
             $scope.employee = res.data;
-            $scope.managerId = $scope.employee.manager;
-            if($scope.managerId) {
-                employeeFactory.getOneEmployee($scope.managerId)
-                .then(function(response) {
-                    $scope.manager = response.data;
-                });
-            }
-        });
-    employeeFactory.getDirectReports($routeParams.id)
-        .then(function(res) {
-            $scope.employee.dirReports = res.data;
-            //console.log($scope.employee);
         });
 
 })
@@ -103,38 +71,29 @@ angular.module('myApp', ['ngRoute'])
             officePhone : $scope.officePhone,
             cellPhone : $scope.cellPhone,
             email : $scope.email,
-            manager : $scope.manager,
+            manager : $scope.manager
         };
         employeeFactory.addEmployee(employee)
             .then(function(res) {
                 $location.path("/");
+                console.log(res);
             }, function(err) {
                 $location.path("/");
+                console.log(err);
             });
 
     }
 })
 //employee list controller
 .controller('EmployeeListCtrl', function($scope,$location,employeeFactory) {
-    function getEmployees() {
-        employeeFactory.getEmployees()
-            .then(function(res) {
-                $scope.employees = res.data;
-                //calculate direct reports for each employee
-                //and set to employee.dirReports(array of ids)
-                $scope.employees.forEach(function(item) {
-                    employeeFactory.getDirectReports(item._id)
-                        .then(function(res) {
-                            item.dirReports = res.data;
-                        });
-                });
-            });
-    }
-    getEmployees();
+    employeeFactory.getEmployees()
+        .then(function(res) {
+            $scope.employees = res.data;
+        });
 
     $scope.viewDetail = function(employee) {
         $location.path("/" + employee._id);
-    }
+    };
     //list sorting
     $scope.orderByMe = function(me) {
         $scope.myOrderBy = me;

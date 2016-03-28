@@ -43,7 +43,6 @@ router.get('/', (req, res) => {
                if(err) res.send(err);
                else res.json(docs);
            });
-
        }
     });
 });
@@ -69,7 +68,7 @@ router.post('/', (req, res) => {
                         else res.json({message: 'Employee successfully created!',employee: employee});
                     });
                 }else{
-                    res.send("Failed to create user, invalid manager name");
+                    res.status(400).send("Failed to create user, invalid manager name");
                 }
 
             }
@@ -162,12 +161,45 @@ router.get('/:id', (req, res) => {
 
 //get direct reports for specific employee
 router.get('/:id/reports', (req, res) => {
-    Employee.findById(req.params.id).lean().exec((err, doc) => {
+    Employee.findById(req.params.id).lean().exec((err, idDoc) => {
         if(err) res.send(err);
         else{
-            Employee.find({manager: doc._id}, (err, docs) => {
-               if(err) res.send(err);
-                else res.json(docs);
+            Employee.find({manager: idDoc._id}).lean().exec((err, docs) => {
+                if(err || !docs) res.send(err);
+                else {
+                    async.each(docs, (doc, callback) => {
+                        async.parallel([
+                                //async task 1 : get manger object
+                                (cb) => {
+                                    if(typeof doc.manager !== 'undefined') {
+                                        Employee.findById(doc.manager, (err, managerDoc) => {
+                                            if (err)  return cb(err);
+                                            doc.managerObj = managerDoc;
+                                            cb();
+                                        });
+                                    }
+                                    else cb();
+                                },
+                                //async task 2 : get direct reports objects
+                                (cb) => {
+                                    Employee.find({manager: doc._id}, (err, dirReportDocs) => {
+                                        if(err)  return cb(err);
+                                        doc.dirReports = dirReportDocs;
+                                        cb();
+                                    });
+                                }
+                            ], (err) => {
+                                //this is final callback for async parallel tasks
+                                if(err) return callback(err);
+                                callback();
+                            }
+                        );
+                    }, (err) => {
+                        //this is final callback for async.each
+                        if(err) res.send(err);
+                        else res.json(docs);
+                    });
+                }
             });
         }
     });

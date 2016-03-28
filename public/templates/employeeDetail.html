@@ -40,11 +40,11 @@
                             </tr>
                             <tr>
                                 <td>Manager:</td>
-                                <td><a href="#/{{manager._id}}">{{manager.name}}</a></td>
+                                <td><a href="#/{{employee.managerObj._id}}">{{employee.managerObj.name}}</a></td>
                             </tr>
                             <tr>
                                 <td>Direct Reports:</td>
-                                <td><a href="#/{{employee._id}}/reports">{{employee.dirReports.reports.length}}</td>
+                                <td><a href="#/{{employee._id}}/reports">{{employee.dirReports.length}}</td>
                             </tr>
                         </tbody>
                     </table>
