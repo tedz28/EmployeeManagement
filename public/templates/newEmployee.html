@@ -52,10 +52,22 @@
                     </select>
                 </fieldset>
                 <fieldset>
+                    <label>Image File:</label>
+                    <button class="btn btn-warning" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                        Select File</button>
+
+                    <div ng-show="f.progress >= 0">File selected: {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                      <span class="progress">
+                          <div style="width:{{f.progress}}%" ng-bind="'progress:'+f.progress + '%'"></div>
+                      </span>
+                    </div>
+                </fieldset>
+                <fieldset>
                     <button class="btn btn-primary" ng-click="addEmployee()">Create New Employee</button>
                 </fieldset>
-            </form>
 
+            </form>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute','infinite-scroll'])
+angular.module('myApp', ['ngRoute','infinite-scroll','ngFileUpload'])
 //routing config
 .config(['$routeProvider',
     function($routeProvider) {
@@ -8,7 +8,7 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
                 controller : 'EmployeeListCtrl'
             })
             .when('/new_employee', {
-                templateUrl :'templates/newEmpolyee.html',
+                templateUrl :'templates/newEmployee.html',
                 controller : 'NewEmployeeCtrl'
             })
             .when('/:id', {
@@ -18,6 +18,10 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
             .when('/:id/reports', {
                 templateUrl : 'templates/dirReports.html',
                 controller : 'DirReportsCtrl'
+            })
+            .when('/:id/edit', {
+                templateUrl : 'templates/editEmployee.html',
+                controller : 'EditEmployeeCtrl'
             })
             .otherwise({
                 redirectTo :  '/'
@@ -40,17 +44,75 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
         },
         deleteEmployee : function(id) {
             return $http.delete('/employees/' + id.toString());
+        },
+        updateEmployee : function(employee) {
+            return $http.put('/employees/' + employee._id.toString(), employee);
         }
     };
 }])
-.controller('DirReportsCtrl', function($scope, $routeParams, employeeFactory) {
+//edit employee page
+.controller('EditEmployeeCtrl', function($scope, $routeParams, Upload, $timeout, $location, employeeFactory) {
+    employeeFactory.getOneEmployee($routeParams.id)
+        .then(function(res) {
+            $scope.employee = res.data;
+        });
+    employeeFactory.getEmployees()
+        .then(function(res){
+            $scope.employees = res.data;
+        });
+    $scope.updateEmployee = function() {
+        employeeFactory.updateEmployee($scope.employee)
+            .then(function(res) {
+                console.log("Updated"+ res);
+                $location.path("/");
+            }, function(err) {
+                console.log(err);
+            });
+    };
+    $scope.uploadFiles = function(file, errFiles) {
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+        if (file) {
+            file.upload = Upload.upload({
+                url: '/upload',
+                method: 'POST',
+                data : {name: $scope.employee.name.replace(' ', '')},
+                file: file
+            });
+
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0) {
+                    $scope.errorMsg = response.status + ': ' + response.data;
+                    console.log($scope.errorMsg);
+                }
+            }, function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 *
+                    evt.loaded / evt.total));
+            });
+        }
+    };
+})
+
+//employee's direct reports page
+.controller('DirReportsCtrl', function($scope, $routeParams, $location, employeeFactory) {
     $scope.employees = [];
+    employeeFactory.getOneEmployee($routeParams.id)
+        .then(function(res) {
+            $scope.manager = res.data;
+        });
     employeeFactory.getDirectReports($routeParams.id)
         .then(function(res) {
             $scope.employees = res.data;
             if ($scope.employees.length == 0)
                 {$scope.message = "Oops, this employee doesn't have any direct reports!";}
         });
+    $scope.viewDetail = function(employee) {
+        $location.path("/" + employee._id);
+    };
 })
 
 //employee detail page
@@ -62,7 +124,7 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
             $scope.employee = res.data;
         });
     $scope.editProfile = function() {
-
+        $location.path("/" + $scope.employee._id + "/edit");
     };
     $scope.deleteProfile = function() {
         if($scope.employee._id) {
@@ -79,7 +141,7 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
 
 })
 //new employee controller
-.controller('NewEmployeeCtrl', function($scope, $location, employeeFactory) {
+.controller('NewEmployeeCtrl', function($scope, $location, Upload, $timeout, employeeFactory) {
     employeeFactory.getEmployees()
         .then(function(res){
            $scope.employees = res.data;
@@ -94,7 +156,7 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
             cellPhone : $scope.cellPhone,
             email : $scope.email
         };
-        if($scope.manager != 'None') employee.manager = $scope.manager;
+        if($scope.manager && ($scope.manager != 'None')) employee.manager = $scope.manager;
         employeeFactory.addEmployee(employee)
             .then(function(res) {
                 $location.path("/");
@@ -104,7 +166,33 @@ angular.module('myApp', ['ngRoute','infinite-scroll'])
                 console.log(err);
             });
 
-    }
+    };
+    $scope.uploadFiles = function(file, errFiles) {
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+        if (file) {
+            file.upload = Upload.upload({
+                url: '/upload',
+                method: 'POST',
+                data : {name: $scope.fName + $scope.lName},
+                file: file
+            });
+
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0) {
+                    $scope.errorMsg = response.status + ': ' + response.data;
+                    console.log($scope.errorMsg);
+                }
+            }, function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 *
+                    evt.loaded / evt.total));
+            });
+        }
+    };
 })
 //employee list controller
 .controller('EmployeeListCtrl', function($scope,$location,employeeFactory) {

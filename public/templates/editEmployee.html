@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Edit Employee</h3>
+        </div>
+        <div class="panel-body">
+            <form name="newForm">
+                <fieldset calss="form-group">
+                    <label>Name:</label>
+                    <input class="form-control" type="text" name="fullName" ng-model="employee.name"  placeholder="Full Name" required>
+                    <i ng-show="newForm.fullName.$error.required">*required</i>
+                </fieldset>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Title:</label>
+                    <input class="form-control" type="text" name="employeeTitle" ng-model="employee.title" placeholder="Title" required>
+                    <i ng-show="newForm.employeeTitle.$error.required">*required</i>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Sex:</label>
+                    <select class="form-control" ng-model="employee.sex">
+                        <option>male</option>
+                        <option>female</option>
+                        <option>other</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Start Date:</label>
+                    <input class="form-control" type="text" ng-model="employee.startDate"  placeholder="mm/dd/yyyy">
+                </fieldset>
+                <fieldset>
+                    <label>Office Phone:</label>
+                    <input class="form-control" type="text" ng-model="employee.officePhone"  placeholder="Office Phone">
+                </fieldset>
+                <fieldset>
+                    <label>Cell Phone:</label>
+                    <input class="form-control" type="text" ng-model="employee.cellPhone"  placeholder="Cell Phone">
+                </fieldset>
+                <fieldset>
+                    <label>Email:</label>
+                    <input class="form-control" type="email" ng-model="employee.email"  placeholder="Email">
+                </fieldset>
+                <fieldset>
+                    <label>Manager:</label>
+                    <select class="form-control" ng-model="employee.manager">
+                        <option>None</option>
+                        <option ng-repeat="item in employees">{{item.name}}</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <label>Image File:</label>
+                    <button class="btn btn-warning" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                        Select File</button>
+
+                    <div ng-show="f.progress >= 0">File selected: {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                      <span class="progress">
+                          <div style="width:{{f.progress}}%" ng-bind="'progress:'+f.progress + '%'"></div>
+                      </span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <button class="btn btn-primary" ng-click="updateEmployee()">Update Employee</button>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
