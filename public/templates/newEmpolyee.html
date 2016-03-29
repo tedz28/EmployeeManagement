@@ -1,29 +1,61 @@
-<form class="container">
-    <h3>Create New Employee</h3>
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">New Employee</h3>
+        </div>
+        <div class="panel-body">
+            <form name="newForm">
+                <fieldset calss="form-group">
+                    <label>First Name:</label>
+                    <input class="form-control" type="text" name="firstName" ng-model="fName"  placeholder="First Name" required>
+                    <i ng-show="newForm.firstName.$error.required">*required</i>
+                </fieldset>
+                <fieldset calss="form-group">
+                    <label>Last name:</label>
+                    <input class="form-control" type="text" name="lastName" ng-model="lName"  placeholder="Last Name" required>
+                    <i ng-show="newForm.lastName.$error.required">*required</i>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Title:</label>
+                    <input class="form-control" type="text" name="employeeTitle" ng-model="title" placeholder="Title" required>
+                    <i ng-show="newForm.employeeTitle.$error.required">*required</i>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Sex:</label>
+                    <select class="form-control" ng-model="sex">
+                        <option>male</option>
+                        <option>female</option>
+                        <option>other</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Start Date:</label>
+                    <input class="form-control" type="text" ng-model="startDate"  placeholder="mm/dd/yyyy">
+                </fieldset>
+                <fieldset>
+                    <label>Office Phone:</label>
+                    <input class="form-control" type="text" ng-model="officePhone"  placeholder="Office Phone">
+                </fieldset>
+                <fieldset>
+                    <label>Cell Phone:</label>
+                    <input class="form-control" type="text" ng-model="cellPhone"  placeholder="Cell Phone">
+                </fieldset>
+                <fieldset>
+                    <label>Email:</label>
+                    <input class="form-control" type="email" ng-model="email"  placeholder="Email">
+                </fieldset>
+                <fieldset>
+                    <label>Manager:</label>
+                    <select class="form-control" ng-model="manager">
+                        <option>None</option>
+                        <option ng-repeat="employee in employees">{{employee.name}}</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <button class="btn btn-primary" ng-click="addEmployee()">Create New Employee</button>
+                </fieldset>
+            </form>
 
-    <label>Name:</label>
-    <input class="form-control" type="text" ng-model="name"  placeholder="Full Name">
-    <br>
-    <label>Title:</label>
-    <input class="form-control" type="text" ng-model="title" placeholder="Title">
-    <br>
-    <label>Sex:</label>
-    <input class="form-control" type="text" ng-model="sex" placeholder="Sex">
-    <br>
-    <label>Start Date:</label>
-    <input class="form-control" type="text" ng-model="startDate"  placeholder="Start Date">
-    <br>
-    <label>Office Phone:</label>
-    <input class="form-control" type="text" ng-model="officePhone"  placeholder="Office Phone">
-    <br>
-    <label>Cell Phone:</label>
-    <input class="form-control" type="text" ng-model="cellPhone"  placeholder="Cell Phone">
-    <br>
-    <label>Email:</label>
-    <input class="form-control" type="text" ng-model="email"  placeholder="Email">
-    <br>
-    <label>Manager:</label>
-    <input class="form-control" type="text" ng-model="manager"  placeholder="Manager">
-    <br>
-    <button class="btn btn-primary" ng-click="addEmployee()">Create New Employee</button>
-</form>
+        </div>
+    </div>
+</div>

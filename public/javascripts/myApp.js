@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute'])
+angular.module('myApp', ['ngRoute','infinite-scroll'])
 //routing config
 .config(['$routeProvider',
     function($routeProvider) {
@@ -37,6 +37,9 @@ angular.module('myApp', ['ngRoute'])
         },
         getOneEmployee : function(id) {
             return $http.get('/employees/' + id.toString());
+        },
+        deleteEmployee : function(id) {
+            return $http.delete('/employees/' + id.toString());
         }
     };
 }])
@@ -58,21 +61,40 @@ angular.module('myApp', ['ngRoute'])
         .then(function(res) {
             $scope.employee = res.data;
         });
+    $scope.editProfile = function() {
+
+    };
+    $scope.deleteProfile = function() {
+        if($scope.employee._id) {
+            employeeFactory.deleteEmployee($scope.employee._id)
+                .then(function(res) {
+                    $location.path("/");
+                    console.log(res);
+                }, function (err) {
+                    console.log(err);
+                    $location.path("/");
+                });
+        }
+    };
 
 })
 //new employee controller
 .controller('NewEmployeeCtrl', function($scope, $location, employeeFactory) {
+    employeeFactory.getEmployees()
+        .then(function(res){
+           $scope.employees = res.data;
+        });
     $scope.addEmployee = function() {
         var employee = {
-            name : $scope.name,
+            name : $scope.fName + " " + $scope.lName,
             title : $scope.title,
             sex   : $scope.sex,
             startDate : $scope.startDate,
             officePhone : $scope.officePhone,
             cellPhone : $scope.cellPhone,
-            email : $scope.email,
-            manager : $scope.manager
+            email : $scope.email
         };
+        if($scope.manager != 'None') employee.manager = $scope.manager;
         employeeFactory.addEmployee(employee)
             .then(function(res) {
                 $location.path("/");
@@ -86,11 +108,19 @@ angular.module('myApp', ['ngRoute'])
 })
 //employee list controller
 .controller('EmployeeListCtrl', function($scope,$location,employeeFactory) {
+    //$scope.data = [];
+    //let done = false;
     employeeFactory.getEmployees()
         .then(function(res) {
+            //$scope.data = res.data;
+            //$scope.employees = $scope.data.slice(0, 4);
+            //done = true;
             $scope.employees = res.data;
         });
 
+    $scope.getMore = function() {
+        //if(done) $scope.employees = $scope.data.slice(0, $scope.employees.length + 2);
+    };
     $scope.viewDetail = function(employee) {
         $location.path("/" + employee._id);
     };

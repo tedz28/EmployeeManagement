@@ -44,10 +44,16 @@
                             </tr>
                             <tr>
                                 <td>Direct Reports:</td>
-                                <td><a href="#/{{employee._id}}/reports">{{employee.dirReports.length}}</td>
+                                <td><a href="#/{{employee._id}}/reports">{{employee.dirReports.length}}</a></td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="profile-operation">
+                    <div class="col-md-8">
+                        <button  class="btn btn-success" ng-click="editProfile()">Edit</button>
+                        <button  class="btn btn-danger" ng-click="deleteProfile()">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,6 +16,9 @@ footer p {
   margin-left: 10px;
 }
 
+.navbar {
+    background-color: lightskyblue;
+}
 body{
     margin-top:20px;
     background: #f1f2f7;
@@ -84,4 +87,16 @@ body{
 .search-box {
     margin-left: 20px;
     margin-bottom: 20px;
+}
+
+i {
+    color: #ff6c60;
+}
+
+fieldset button {
+    margin-top: 20px;
+}
+
+.profile-operation button {
+    width: 100px;
 }
