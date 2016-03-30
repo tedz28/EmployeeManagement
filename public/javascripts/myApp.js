@@ -196,18 +196,18 @@ angular.module('myApp', ['ngRoute','infinite-scroll','ngFileUpload'])
 })
 //employee list controller
 .controller('EmployeeListCtrl', function($scope,$location,employeeFactory) {
-    //$scope.data = [];
+    $scope.data = [];
     //let done = false;
     employeeFactory.getEmployees()
         .then(function(res) {
-            //$scope.data = res.data;
-            //$scope.employees = $scope.data.slice(0, 4);
-            //done = true;
-            $scope.employees = res.data;
+            $scope.data = res.data;
+            $scope.employees = $scope.data.slice(0, 4);
+            done = true;
+           // $scope.employees = res.data;
         });
 
     $scope.getMore = function() {
-        //if(done) $scope.employees = $scope.data.slice(0, $scope.employees.length + 2);
+        if(done) $scope.employees = $scope.data.slice(0, $scope.employees.length + 2);
     };
     $scope.viewDetail = function(employee) {
         $location.path("/" + employee._id);

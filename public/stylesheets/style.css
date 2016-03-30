@@ -100,11 +100,3 @@ fieldset button {
 .profile-operation button {
     width: 100px;
 }
-
-.thumb {
-    width: 24px;
-    height: 24px;
-    float: none;
-    position: relative;
-    top: 7px;
-}
