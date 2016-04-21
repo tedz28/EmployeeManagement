@@ -5,23 +5,21 @@
             <span class="glyphicon glyphicon-search"></span>
             <input type="text" ng-model="searchText" placeholder="Search employee here...">
         </div>
-        <div infinite-scroll="getMore()" infinite-scroll-distance="0">
-            <div class="col-md-6 col-sm-6" ng-repeat="employee in employees | filter : searchText">
-                <div class="panel">
-                  <div class="panel-body">
-                      <div class="media">
-                          <a class="pull-left" href="#/{{employee._id}}">
-                              <img class="thumb media-object" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" alt="Employee Image">
-                          </a>
-                          <div class="media-body">
-                              <h4><a href="#/{{employee._id}}">{{employee.name}}</a> <span class="text-muted small"> - {{employee.title}}</span></h4>
-                              <a href="#/{{employee._id}}/reports" >Diret Reports: {{ employee.dirReports.length}}</a>
-                              <br>
-                              <button class="btn btn-primary" ng-click="viewDetail(employee)">More Details</button>
-                          </div>
+        <div class="col-md-6 col-sm-6" ng-repeat="employee in employees | filter : searchText">
+            <div class="panel">
+              <div class="panel-body">
+                  <div class="media">
+                      <a class="pull-left" href="#/{{employee._id}}">
+                          <img class="thumb media-object" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" alt="Employee Image">
+                      </a>
+                      <div class="media-body">
+                          <h4><a href="#/{{employee._id}}">{{employee.name}}</a> <span class="text-muted small"> - {{employee.title}}</span></h4>
+                          <a href="#/{{employee._id}}/reports" >Diret Reports: {{ employee.dirReports.length}}</a>
+                          <br>
+                          <button class="btn btn-primary" ng-click="viewDetail(employee)">More Details</button>
                       </div>
                   </div>
-                </div>
+              </div>
             </div>
         </div>
     </div>
