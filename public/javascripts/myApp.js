@@ -50,6 +50,17 @@ angular.module('myApp', ['ngRoute','ngFileUpload'])
         }
     };
 }])
+//custom directive
+.directive('fallbackSrc', function () {
+    var fallbackSrc = {
+        link: function postLink(scope, iElement, iAttrs) {
+            iElement.bind('error', function() {
+                angular.element(this).attr("src", iAttrs.fallbackSrc);
+            });
+        }
+    };
+    return fallbackSrc;
+})
 //edit employee page
 .controller('EditEmployeeCtrl', function($scope, $routeParams, Upload, $timeout, $location, employeeFactory) {
     employeeFactory.getOneEmployee($routeParams.id)
@@ -63,10 +74,10 @@ angular.module('myApp', ['ngRoute','ngFileUpload'])
     $scope.updateEmployee = function() {
         employeeFactory.updateEmployee($scope.employee)
             .then(function(res) {
-                console.log("Updated"+ res);
+                //console.log("Updated"+ res);
                 $location.path("/");
             }, function(err) {
-                console.log(err);
+                //console.log(err);
             });
     };
     $scope.uploadFiles = function(file, errFiles) {
@@ -87,7 +98,7 @@ angular.module('myApp', ['ngRoute','ngFileUpload'])
             }, function (response) {
                 if (response.status > 0) {
                     $scope.errorMsg = response.status + ': ' + response.data;
-                    console.log($scope.errorMsg);
+                    //console.log($scope.errorMsg);
                 }
             }, function (evt) {
                 file.progress = Math.min(100, parseInt(100.0 *
@@ -131,9 +142,9 @@ angular.module('myApp', ['ngRoute','ngFileUpload'])
             employeeFactory.deleteEmployee($scope.employee._id)
                 .then(function(res) {
                     $location.path("/");
-                    console.log(res);
+                    //console.log(res);
                 }, function (err) {
-                    console.log(err);
+                    //console.log(err);
                     $location.path("/");
                 });
         }
@@ -160,10 +171,10 @@ angular.module('myApp', ['ngRoute','ngFileUpload'])
         employeeFactory.addEmployee(employee)
             .then(function(res) {
                 $location.path("/");
-                console.log(res);
+                //console.log(res);
             }, function(err) {
                 $location.path("/");
-                console.log(err);
+                //console.log(err);
             });
 
     };
@@ -185,7 +196,7 @@ angular.module('myApp', ['ngRoute','ngFileUpload'])
             }, function (response) {
                 if (response.status > 0) {
                     $scope.errorMsg = response.status + ': ' + response.data;
-                    console.log($scope.errorMsg);
+                    //console.log($scope.errorMsg);
                 }
             }, function (evt) {
                 file.progress = Math.min(100, parseInt(100.0 *

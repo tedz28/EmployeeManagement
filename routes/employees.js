@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
             else res.json({message: 'Employee successfully created!',employee: employee});
         });
     }else {
-        console.log("Manger name:"+req.body.manager);
+        //console.log("Manger name:"+req.body.manager);
         //look up manager name in database
         Employee.findOne({name : req.body.manager}, (err, doc) => {
             if(err) res.send(err);
@@ -126,7 +126,7 @@ router.delete('/:id', (req, res) => {
 //get employee by id
 router.get('/:id', (req, res) => {
     Employee.findById(req.params.id).lean().exec((err, doc) => {
-        console.log(doc);
+        //console.log(doc);
         if(err || !doc) res.send(err || "Not found");
         else {
             async.parallel([

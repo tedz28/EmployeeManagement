@@ -44,7 +44,7 @@
                     <label>Manager:</label>
                     <select class="form-control" ng-model="employee.manager">
                         <option>None</option>
-                        <option ng-repeat="item in employees">{{item.name}}</option>
+                        <option ng-repeat="item in employees" ng-if="item.name != employee.name">{{item.name}}</option>
                     </select>
                 </fieldset>
                 <fieldset>
