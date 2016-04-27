@@ -6,7 +6,11 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center">
-                    <img alt="Employee Image" fallback-src="/images/uploads/default.png" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" class="img-circle img-responsive">
+                    <img alt="Employee Image" fallback-src="/images/uploads/default.png" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" class="img-rounded img-responsive">
+                    <div class="profile-operation">
+                            <button  class="btn btn-primary" ng-click="editProfile()">Edit</button>
+                            <button  class="btn btn-primary" ng-click="deleteProfile()">Delete</button>
+                    </div>
                 </div>
                 <div class=" col-md-9 col-lg-9 ">
                     <table class="table table-user-information">
@@ -48,12 +52,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="profile-operation">
-                    <div class="col-md-8">
-                        <button  class="btn btn-success" ng-click="editProfile()">Edit</button>
-                        <button  class="btn btn-danger" ng-click="deleteProfile()">Delete</button>
-                    </div>
                 </div>
             </div>
         </div>
