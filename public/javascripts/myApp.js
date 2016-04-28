@@ -206,42 +206,7 @@ angular.module('myApp', ['ngRoute','ngFileUpload','ui.bootstrap'])
     };
 
     //added by cheng ----------------------------------------------------------------
-    //$scope.fName = '';
-
-    $scope.$watch('fName',function(){$scope.fNameBorder()});
-    $scope.fNameBorder = function(){
-        if ($scope.fName == undefined || $scope.fName == '') {
-            document.getElementById("firstName").style.borderColor = 'red'//'#ccc';
-            //document.getElementById("firstName").style.boxShadow = "4px 4px 10px rgba(200, 0, 0, 0.85)";
-
-        } else {
-            document.getElementById("firstName").style.borderColor = 'green';
-            //document.getElementById("firstName").style.boxShadow = "4px 4px 10px rgba(0, 200, 0, 0.85)";
-        }
-    };
-    //$scope.lName;
-    $scope.$watch('lName',function(){$scope.lNameBorder()});
-    $scope.lNameBorder = function(){
-        if ($scope.lName == undefined || $scope.lName == '') {
-            document.getElementById("lastName").style.borderColor = 'red'//'#ccc';
-            //document.getElementById("lastName").style.boxShadow = "4px 4px 10px rgba(200, 0, 0, 0.85)";
-
-        } else {
-            document.getElementById("lastName").style.borderColor = 'green';
-            //document.getElementById("lastName").style.boxShadow = "4px 4px 10px rgba(0, 200, 0, 0.85)";
-        }
-    };
-    //$scope.email;
-    $scope.$watch('email',function(){$scope.emailBorder()});
-    $scope.emailBorder = function(){
-        if ($scope.email == undefined || $scope.email == '') {
-            document.getElementById("email").style.borderColor = 'red'//'#ccc';
-            //document.getElementById("email").style.boxShadow = "4px 4px 10px rgba(200, 0, 0, 0.85)";
-        } else {
-            document.getElementById("email").style.borderColor = 'green';
-            //document.getElementById("email").style.boxShadow = "4px 4px 10px rgba(0, 200, 0, 0.85)";
-        }
-    };
+    
     //datepicker
     $scope.today = function() {
         $scope.dt = new Date();

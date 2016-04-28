@@ -13,6 +13,15 @@
     color: #bad0ee;
 }
 
+.profile-operation {
+    padding-top: 40px;
+    display: inline;
+}
+.profile-operation button {
+    margin-top: 30px;
+    width: 80px;
+}
+
 /* sidebar navigation */
 .nav-side-menu {
     overflow: auto;
@@ -173,5 +182,245 @@ body {
     left:250px;
     width: 80%;
     height: 100%;
-    padding: 20px;
+    padding: 25px;
 }
+
+.event-list {
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+.event-list > li {
+    background-color: #f6f7fe;
+    box-shadow: 0px 0px 5px rgb(51, 51, 51);
+    box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+    padding: 0px;
+    margin: 0px 0px 5px;
+}
+
+.event-list > li > img {
+    width: 100%;
+}
+.event-list > li > .info {
+    padding-top: 5px;
+    text-align: left;
+}
+.event-list > li > .info > .title {
+    font-size: 15pt;
+    font-weight: 500;
+    margin: 0px;
+}
+.event-list > li > .info > .desc {
+    font-size: 13pt;
+    font-weight: 300;
+    margin: 0px;
+}
+.event-list > li > .info > ul,
+.event-list > li > .social > ul {
+    display: table;
+    list-style: none;
+    margin: 10px 0px 0px;
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+}
+.event-list > li > .social > ul {
+    margin: 0px;
+}
+.event-list > li > .info > ul > li,
+.event-list > li > .social > ul > li {
+    display: table-cell;
+    cursor: pointer;
+    color: rgb(30, 30, 30);
+    font-size: 11pt;
+    font-weight: 300;
+    padding: 3px 0px;
+}
+.event-list > li > .info > ul > li > a {
+    display: block;
+    width: 100%;
+    color: rgb(30, 30, 30);
+    text-decoration: none;
+}
+.event-list > li > .social > ul > li {
+    padding: 0px;
+}
+.event-list > li > .social > ul > li > a {
+    padding: 3px 0px;
+}
+.event-list > li > .info > ul > li:hover,
+.event-list > li > .social > ul > li:hover {
+    color: rgb(30, 30, 30);
+    background-color: rgb(200, 200, 200);
+}
+.facebook a {
+    display: block;
+    width: 100%;
+    color: rgb(75, 110, 168) !important;
+}
+
+
+.facebook:hover a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(75, 110, 168) !important;
+}
+
+@media (min-width: 768px) {
+    .event-list > li {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 65px;
+        padding: 0px;
+    }
+    .event-list > li > time,
+    .event-list > li > img  {
+        display: inline-block;
+    }
+    .event-list > li > time,
+    .event-list > li > img {
+        width: 120px;
+        float: left;
+    }
+    .event-list > li > .info {
+        background-color: rgb(245, 245, 245);
+        overflow: auto ;
+    }
+    .event-list > li > time,
+    .event-list > li > img {
+        width: 65px;
+        height: 65px;
+        padding: 0px;
+        margin: 0px;
+    }
+    .event-list > li > .info {
+        position: relative;
+        height: 65px;
+        text-align: left;
+        padding-right: 40px;
+    }
+    .event-list > li > .info > .title,
+    .event-list > li > .info > .desc {
+        padding: 0px 10px;
+    }
+    .event-list > li > .info > ul {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+    }
+    .event-list > li > .social {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        display: block;
+        width: 40px;
+    }
+    .event-list > li > .social > ul {
+        border-left: 1px solid rgb(230, 230, 230);
+    }
+    .event-list > li > .social > ul > li {
+        display: block;
+        padding: 0px;
+    }
+    .event-list > li > .social > ul > li > a {
+        display: block;
+        width: 40px;
+        height: 65px;
+        padding: 20px 0px 9px;
+    }
+}
+
+
+
+
+/*//////Cheng's css////////////////**/
+
+.form-control-label{
+    text-align:right;
+    font-size:12px;
+    margin-top: 0px;
+    padding-bottom:8px;
+    padding-top:8px;
+}
+
+#label-sex{
+    padding-bottom:2px;
+    padding-top:2px;
+}
+
+.sex-option{
+    left:0px;
+}
+
+label.col-sm-2.form-control-label {
+    font-weight:600;
+    padding-right:0px;
+}
+
+input.form-control,#manager{
+    background-color: #e1e2e9;
+    border-color: #a8abba #b5b7c5 #c5c7d2;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+}
+input.ng-touched.ng-invalid-required{
+    border-color:red;
+}
+input.ng-touched.ng-valid-required{
+    border-color:green;
+}
+input.ng-touched.ng-invalid-email{
+    border-color:red;
+}
+
+.well{
+    background-color:#f6f7fe;
+}
+
+.newEmpImg{
+    margin-bottom:10px;
+}
+
+.btn-select-img{
+    margin-bottom:10px;
+}
+
+.sex{
+    margin-right:15px;
+    font-weight:500;
+}
+
+img.newEmpImg,button.btn-select-img,.btn-create{
+    margin-left:5%;
+}
+
+.btn-cancel{
+    margin-left:50px;
+}
+.btn-create{
+    margin-left:170px;
+}
+
+
+input:required {
+}
+h3.title{
+    font-weight:bold;
+}
+#upload{
+    padding:0px;
+    border:0px;
+}
+/*
+input:required:focus {
+  box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
+  border: 1px solid red;
+  outline: none;
+}*/
+/*
+input:required:hover {
+  box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.85);
+  opacity: 1;
+}*/
+/*///////////////////////////////////////////////////////////**/
