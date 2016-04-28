@@ -382,7 +382,6 @@ body {
 
 
 
-
 /*//////Cheng's css////////////////**/
 .control-lable{
     text-align:right;
@@ -409,6 +408,15 @@ input.form-control,#manager{
 .sex{
     margin-right:15px;
     font-weight:500;
+}
+img.newEmpImg,button.btn-select-img,.btn-create{
+    margin-left:17%;
+}
+.btn-cancel{
+    margin-left:17%;
+}
+
+input:required {
 }
 /*///////////////////////////////////////////////////////////**/
 /* Sticky footer styles

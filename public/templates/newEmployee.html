@@ -1,15 +1,15 @@
-<div class="container-fluid new-form">
+<div class="container">
     <div class="well">
         <div class="well-heading">
             <h3 class="card-title">New Employee</h3>
         </div>
-        <div class="panel-body">
-            <form name="newForm">
+        <div class="panel-body">			
+			<form name="newForm">
                 <div>
-                    <img class="thumbnail newEmpImg" alt="Employee Image" style="height: 160px;" src="/images/uploads/default.png" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" class="img-circle img-responsive">
+					<img class="thumbnail newEmpImg" alt="Employee Image" style="height: 160px;" src="/images/uploads/default.png" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" class="img-circle img-responsive">
                     <button class="btn btn-primary btn-select-img" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
                             accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                        Select File</button>
+                        Upload Profile Image</button>
 
                     <div ng-show="f.progress >= 0">File selected: {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
                       <span class="progress">
@@ -17,90 +17,98 @@
                       </span>
                     </div>
                 </div>
-
-                <div class="form-group row">
+				
+				<div class="form-group row">
                     <label for="firstName" class="col-sm-2 form-control-label">First Name:</label>
-                    <div class="col-sm-6">
-                        <input id="firstName"  class="form-control" type="text" name="firstName" ng-model="fName"  placeholder="First Name" required>
-                        <i class="error" ng-show="newForm.firstName.$error.required">*required</i>
-                    </div>
+					<div class="col-sm-6">
+						<input id="firstName"  class="form-control" type="text" name="firstName" ng-model="fName"  placeholder="First Name" required>
+						<!--<i ng-show="newForm.firstName.$error.required">*required</i>-->
+					</div>
                 </div>
-
-                <div class="form-group row">
+                
+				<div class="form-group row">
                     <label for="lastName" class="form-control-label col-sm-2">Last Name:</label>
                     <div class="col-sm-6">
-                        <input id="lastName"  class="form-control" type="text" name="lastName" ng-model="lName"  placeholder="Last Name" required>
-                        <i class="error" ng-show="newForm.lastName.$error.required">*required</i>
-                    </div>
-                </div>
-
-                <div class="form-group row">
+						<input id="lastName"  class="form-control" type="text" name="lastName" ng-model="lName"  placeholder="Last Name" required>
+						<!--<i ng-show="newForm.lastName.$error.required">*required</i>-->
+					</div>
+				</div>
+				
+				<div class="form-group row">
                     <label for="title" class="form-control-label col-sm-2">Title:</label>
-                    <div class="col-sm-6">
-                        <input id="title"  class="form-control" type="text" name="employeeTitle" ng-model="title" placeholder="Title">
-
-                    </div>
+					<div class="col-sm-6">
+						<input id="title"  class="form-control" type="text" name="employeeTitle" ng-model="title" placeholder="Title">
+						
+					</div>
                 </div>
-
-                <div class="form-group row">
+				
+				<div class="form-group row">
                     <label class="form-control-label col-sm-2">Sex:</label>
-                    <div class="col-sm-6 sex-option">
-                        <input type="radio" name="gender" id="female" value="female">
-                        <label class="sex" for="female">Female </label>
-                        <input type="radio" name="gender" id="male" value="male">
-                        <label class="sex" for="male">Male </label>
-                        <input type="radio" name="gender" id="other" value="other">
-                        <label class="sex" for="other">Other</label>
-                    </div>
-                    <!--<input type="submit" value="Submit"><br>
+					<div class="col-sm-6 sex-option">
+						<input type="radio" name="gender" id="female" value="female">
+						<label class="sex" for="female">Female </label>
+						<input type="radio" name="gender" id="male" value="male">
+						<label class="sex" for="male">Male </label>
+						<input type="radio" name="gender" id="other" value="other">
+						<label class="sex" for="other">Other</label>
+					</div>
+					<!--<input type="submit" value="Submit"><br>
                     <select class="form-control" ng-model="sex">
                         <option>male</option>
                         <option>female</option>
                         <option>other</option>
                     </select>-->
                 </div>
-
+				
                 <div class="form-group row">
                     <label for="startDate" class="form-control-label col-sm-2">Start Date:</label>
                     <div class="col-sm-6">
-                        <input id="startDate"  class="form-control" type="text" ng-model="startDate"  placeholder="mm/dd/yyyy">
-                    </div>
-                </div>
-
+						<!--<input id="startDate"  class="form-control" type="text" ng-model="startDate"  placeholder="mm/dd/yyyy">
+						-->
+						<p class="input-group">
+							<input type="text" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</p>
+					</div>
+				</div>
+				
                 <div class="form-group row">
                     <label for="officePhone" class="form-control-label col-sm-2">Office Phone:</label>
                     <div class="col-sm-6">
-                        <input id="officePhone"	  class="form-control" type="text" ng-model="officePhone"  placeholder="Office Phone">
-                    </div>
-                </div>
-
+						<input id="officePhone"	  class="form-control" type="text" ng-model="officePhone"  placeholder="Office Phone">
+					</div>
+				</div>
+				
                 <div class="form-group row">
                     <label for="cellPhone" class="form-control-label col-sm-2">Cell Phone:</label>
-                    <div class="col-sm-6">
-                        <input id="cellPhone"  class="form-control" type="text" ng-model="cellPhone"  placeholder="Cell Phone">
-                    </div>
+					<div class="col-sm-6">
+						<input id="cellPhone"  class="form-control" type="text" ng-model="cellPhone"  placeholder="Cell Phone">
+					</div>
                 </div>
-
+				
                 <div class="form-group row">
                     <label for="email" class="form-control-label col-sm-2">Email:</label>
-                    <div class="col-sm-6 col-lg-6">
-                        <input id="email"  class="form-control" type="email" name="email" ng-model="email"  placeholder="Email" required>
-                        <i class="error" ng-show="newForm.email.$error.required">*required</i>
-                    </div>
-                </div>
-
+					<div class="col-sm-6 col-lg-6">
+						<input id="email"  class="form-control" type="email" name="email" ng-model="email"  placeholder="Email" required>
+						<!--<i ng-show="newForm.email.$error.required">*required</i>-->
+					</div>
+				</div>
+				
                 <div class="form-group row">
                     <label  for="manager" class="form-control-label col-sm-2">Manager:</label>
-                    <div class="col-sm-6">
-                        <select id="manager"  class="form-control" ng-model="manager">
-                            <option>None</option>
-                            <option ng-repeat="employee in employees">{{employee.name}}</option>
-                        </select>
-                    </div>
+					<div class="col-sm-6">
+						<select id="manager"  class="form-control" ng-model="manager">
+							<option>None</option>
+							<option ng-repeat="employee in employees">{{employee.name}}</option>
+						</select>
+					</div>
                 </div>
-
+				
                 <div>
-                    <button class="btn btn-primary" ng-click="addEmployee()">Create</button>
+                    <button class="btn btn-primary btn-create" ng-click="addEmployee()">Create</button>
+                    <button class="btn btn-primary btn-cancel" ng-click="addEmployee()">Cancel</button>
                 </div>
 
             </form>
