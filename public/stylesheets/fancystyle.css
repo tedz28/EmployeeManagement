@@ -19,8 +19,9 @@
 }
 .profile-operation button {
     margin-top: 30px;
-    width: 80px;
+    width: 100px;
 }
+
 
 /* sidebar navigation */
 .nav-side-menu {
@@ -176,18 +177,17 @@ body {
     overflow: auto;
     font-family: verdana;
     font-size: 12px;
-    font-weight: 200;
+    font-weight: 300;
     position: fixed;
     top: 51px;
     left:150px;
-    width: 80%;
+    width: 85%;
     height: 100%;
-    padding: 15px;
+    padding: 20px;
 }
 
 .event-list {
     list-style: none;
-    font-family: 'Lato', sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -212,7 +212,7 @@ body {
     margin: 0px;
 }
 .event-list > li > .info > .desc {
-    font-size: 11pt;
+    font-size: 10pt;
     font-weight: 300;
     margin: 0px;
 }
@@ -414,3 +414,11 @@ h3.title{
 }
 
 /*///////////////////////////////////////////////////////////**/
+
+.search-box {
+    margin-bottom: 15px;
+}
+#search-box-input {
+    width: 92%;
+    height: 32px;
+}

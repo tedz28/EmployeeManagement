@@ -1,10 +1,13 @@
 <div class="container-fluid">
-    <div class="well">
+    <div class=" panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Employee Information</h3>
+		</div>
         <div class="panel-body">			
 			<form name="newForm">
                 <div class="row-fluid" style="height:170px">
 					<div class="col-sm-4">
-						<img class="thumbnail newEmpImg" alt="Employee Image" style="height: 96px;margin-top:5px;" src="/images/uploads/default.png" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" class="img-circle img-responsive">
+						<img class="thumbnail newEmpImg" alt="Employee Image" style="height: 96px;margin-top:5px;" src="http://bootdey.com/img/Content/avatar/avatar6.png"  class="img-circle img-responsive">
 						<button id="upload" class="btn btn-primary btn-select-img" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
 								accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" style="height:20px;width:96px;font-size:12px;">
 							Upload Image</button>
@@ -17,7 +20,7 @@
 					</div>
 					<div class="col-sm-8">
 						<h2 style="font-weight:700;"> Michael Phillips </h2>
-						<strong>Hiring Manager</strong> at <strong><a href="#">TMC Software.Inc</a></strong>
+						<strong>President</strong> at <strong><a href="#">TMC Software.Inc</a></strong>
 						<br>
 						<span class="glyphicon glyphicon-envelope"></span><abbr title='Work email'> e-mail:</abbr>
 						<a href="mailto:#">michael.phillips@tmc.com</a>
@@ -62,7 +65,7 @@
 							</div>
 							
 							<div class="form-group row">
-								<label id="label-sex"class="form-control-label col-sm-2">Sex:</label>
+								<label id="label-sex"class="form-control-label col-sm-2">Gender:</label>
 								<div class="col-sm-6 sex-option">
 									<input type="radio" name="gender" id="female" value="female">
 									<label class="sex" for="female">Female </label>

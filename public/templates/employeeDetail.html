@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="panel panel-info">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">{{employee.name}}</h3>
         </div>
@@ -8,8 +8,8 @@
                 <div class="col-md-3 col-lg-3 " align="center">
                     <img alt="Employee Image" fallback-src="/images/uploads/default.png" ng-src="/images/uploads/{{employee.name.replace(' ', '')}}.png" class="img-rounded img-responsive">
                     <div class="profile-operation">
-                            <button  class="btn btn-primary" ng-click="editProfile()">Edit</button>
-                            <button  class="btn btn-primary" ng-click="deleteProfile()">Delete</button>
+                            <button  class="btn btn-primary" ng-click="editProfile()"><i class="fa fa-pencil fa-lg "></i> Edit</button>
+                            <button  class="btn btn-primary" ng-click="deleteProfile()"><i class="fa fa-trash fa-lg"></i> Delete</button>
                     </div>
                 </div>
                 <div class=" col-md-9 col-lg-9 ">
